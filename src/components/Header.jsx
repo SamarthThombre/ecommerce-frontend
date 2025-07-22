@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiShoppingCart, FiUser } from 'react-icons/fi';  // Icons from react-icons
+import { FiShoppingCart, FiUser } from 'react-icons/fi'; 
+import Signin from '../pages/Signin';
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -42,10 +43,10 @@ function Header() {
         )}
       </Link>
 
-      {/* Profile Icon */}
-      <button className="hover:text-yellow-400 transition">
+      
+      <Link to="/signin" className="hover:text-yellow-400 transition">
         <FiUser size={22} />
-      </button>
+      </Link>
     </nav>
   </div>
 
@@ -62,6 +63,7 @@ function Header() {
       </Link>
       <button onClick={toggleMenu} className="flex items-center gap-2">
         <FiUser /> Profile
+
       </button>
     </div>
   )}

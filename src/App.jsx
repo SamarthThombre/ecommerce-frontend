@@ -5,6 +5,8 @@ import Contact from './pages/Contact';
 import Shop from './pages/Shop';
 import My_Cart from './pages/My_Cart';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Signup from './pages/Signup';
+import Signin from './pages/Signin';
 
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/cart" element={<My_Cart />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
   );
