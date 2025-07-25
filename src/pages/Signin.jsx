@@ -1,30 +1,46 @@
 import React from 'react';
 import Header from '../components/Header';
 import bgContact from '../assets/contact-bg.jpg';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Singin = () => {
+  const { user,  } = useAuth();
+  const Navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [msg, setMsg] = useState('');
+
+ 
+  useEffect(() => {
+    if (user) {
+      Navigate("/profile"); 
+    }
+  }, [user, Navigate]);
+  
   
   const handleSignup = async (e) => {
   e.preventDefault();
-  setMsg('');
+  
 
   try {
       const res = await axios.post('http://localhost:5000/api/user/signin', {
-        name,
         email,
         password
       });
 
-      console.log('✅ Signup successful:', res.data);
-      setMsg('Signup successful!');
+      console.log('✅ Signup successful:');
+      
+
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.setItem("token", res.data.token);
+
+      
+      Navigate('/profile');
+
     } catch (err) {
       console.error('❌ Signup error:', err.response?.data?.message || err.message);
-      setMsg(err.response?.data?.message || 'Signup failed');
     }
   };
 
@@ -74,7 +90,7 @@ const Singin = () => {
           <button type="submit" className="w-full bg-black text-white py-2 rounded">
           Sign Up
           </button>
-          {msg && <p className="text-center mt-2">{msg}</p>}
+          
         </form>
 
         <p className="mt-4 text-center text-sm">
@@ -85,6 +101,7 @@ const Singin = () => {
         </p>
       </div>
     </section>
+    
     </>
   );
 };

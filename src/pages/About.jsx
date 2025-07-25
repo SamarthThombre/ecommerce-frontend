@@ -31,16 +31,16 @@ const About = () => {
 
     {/* About Section */}
     <section className="flex flex-col md:flex-row items-center justify-center gap-8 px-6 py-16 md:px-[10%] bg-[#DDD6CE]">
-      <div className="md:w-1/2 w-full">
+      <div className=" md:w-[30%] w-0 ">
         <img
-          src="src\assets\pexels-emanuel-rodriguez-230145-6079526.jpg"
+          src="src\assets\pexels-robin-4068386.jpg"
           alt="Urban Jungle"
           className="rounded-2xl w-full h-auto object-cover shadow-lg"
         />
       </div>
 
   
-      <div className="md:w-1/2 w-full flex flex-col gap-6">
+      <div className="md:w-[70%] w-full flex flex-col gap-6">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800 leading-snug">
           We strive to provide our customers with the highest quality
         </h2>
