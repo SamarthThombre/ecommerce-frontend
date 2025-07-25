@@ -1,14 +1,40 @@
-import React from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 import Header from '../components/Header';
 import bgContact from '../assets/contact-bg.jpg';
 
-const SignUp = () => {
+
+const Signup = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [msg, setMsg] = useState('');
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    setMsg('');
+
+    try {
+      const res = await axios.post('http://localhost:5000/api/user/signup', {
+        name,
+        email,
+        password
+      });
+
+      console.log('✅ Signup successful:', res.data);
+      setMsg('Signup successful!');
+    } catch (err) {
+      console.error('❌ Signup error:', err.response?.data?.message || err.message);
+      setMsg(err.response?.data?.message || 'Signup failed');
+    }
+  };
+
   return (
     <>
     <Header />
 
     <section
-        className="relative bg-cover bg-center text-white h-[20vh] flex items-center "
+        className="relative bg-cover bg-center text-white h-[25vh] flex items-center "
         style={{ backgroundImage: `url(${bgContact})` }}
         >
         
@@ -23,33 +49,41 @@ const SignUp = () => {
         </div>
     </section>
 
-    <section className="h-[80vh] bg-[#F6EEE5]  flex items-center justify-center p-4">
+    <section className="h-[75vh] bg-[#F6EEE5]  flex items-center justify-center p-4">
         
         
         <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
             <h2 className="text-2xl font-bold mb-6 text-center">Create Account</h2>
-            <form className="space-y-4">
-                <input
-                    type="text"
-                    placeholder="Full Name"
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                />
-                <input
-                type="email"
-                placeholder="Email"
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                />
-                <button
-                    type="submit"
-                    className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition"
-                >
-                    Sign Up
-                </button>
+            
+            <form onSubmit={handleSignup} className="space-y-4">
+            <input
+            type="text"
+            placeholder="Name"
+            className="w-full p-2 border rounded"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            />
+            <input
+            type="email"
+            placeholder="Email"
+            className="w-full p-2 border rounded"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            />
+            <input
+            type="password"
+            placeholder="Password"
+            className="w-full p-2 border rounded"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            />
+            <button type="submit" className="w-full bg-black text-white py-2 rounded">
+            Sign Up
+            </button>
+            {msg && <p className="text-center mt-2">{msg}</p>}
             </form>
         
             <p className="mt-4 text-center text-sm">
@@ -64,4 +98,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Signup;

@@ -5,11 +5,16 @@ import ProductCard from '../components/ProductCard'
 import Testimoneal from '../components/testimoneal'
 import Footer from '../components/Footer'
 import bg2 from '../assets/bg.jpg'
+import Test from '../components/test'
 
 function Home() {
   return (
     
     <div className="bg-[#F6EEE5]">
+      
+      {/* testing backend */}
+      <Test />
+      
       <Header />
 
       {/* Hero Section */}

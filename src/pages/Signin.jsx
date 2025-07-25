@@ -1,14 +1,39 @@
 import React from 'react';
 import Header from '../components/Header';
 import bgContact from '../assets/contact-bg.jpg';
+import { useState } from 'react';
+import axios from 'axios';
 
 const Singin = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [msg, setMsg] = useState('');
+  
+  const handleSignup = async (e) => {
+  e.preventDefault();
+  setMsg('');
+
+  try {
+      const res = await axios.post('http://localhost:5000/api/user/signin', {
+        name,
+        email,
+        password
+      });
+
+      console.log('✅ Signup successful:', res.data);
+      setMsg('Signup successful!');
+    } catch (err) {
+      console.error('❌ Signup error:', err.response?.data?.message || err.message);
+      setMsg(err.response?.data?.message || 'Signup failed');
+    }
+  };
+
   return (
     <>
      <Header />
 
     <section
-        className="relative bg-cover bg-center text-white h-[20vh] flex items-center "
+        className="relative bg-cover bg-center text-white h-[25vh] flex items-center "
         style={{ backgroundImage: `url(${bgContact})` }}
         >
         
@@ -17,33 +42,41 @@ const Singin = () => {
         <div className="relative z-10 m-auto text-center mt-16">
             
             <h1 className="text-5xl md:text-6xl font-bold ">
-                Sign In
+                Sign Up
             </h1>
             
         </div>
     </section>
 
-    <section className="h-[80vh] bg-[#F6EEE5] flex items-center justify-center p-4">
+    <section className="h-[75vh] bg-[#F6EEE5] flex items-center justify-center p-4">
       <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Welcome Back</h2>
-        <form className="space-y-4">
+        <form onSubmit={handleSignup} className="space-y-4">
+        
           <input
-            type="email"
-            placeholder="Email"
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+          type="email"
+          placeholder="Email"
+          className="w-full p-2 border rounded"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
           />
+
           <input
-            type="password"
-            placeholder="Password"
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+          type="password"
+          placeholder="Password"
+          className="w-full p-2 border rounded"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
           />
-          <button
-            type="submit"
-            className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition"
-          >
-            Log In
+          
+          <button type="submit" className="w-full bg-black text-white py-2 rounded">
+          Sign Up
           </button>
+          {msg && <p className="text-center mt-2">{msg}</p>}
         </form>
+
         <p className="mt-4 text-center text-sm">
           Don’t have an account?{' '}
           <a href="/signup" className="text-green-600 hover:underline">
