@@ -9,6 +9,7 @@ import Signup from './pages/Signup';
 import Signin from './pages/Signin';
 import AuthProvider from './context/AuthProvider.jsx';
 import Profile from './pages/Profile';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

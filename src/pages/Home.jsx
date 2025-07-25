@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../components/Header'
 import bg from '../assets/background.jpg'
-import ProductCard from '../components/ProductCard'
+import Product from '../components/Product.jsx'
 import Testimoneal from '../components/testimoneal'
 import Footer from '../components/Footer'
 import bg2 from '../assets/bg.jpg'
@@ -71,7 +71,7 @@ function Home() {
         </h1>
       </div>
       <div>
-        <ProductCard/>
+        <Product/>
       </div>
 
     </section> 

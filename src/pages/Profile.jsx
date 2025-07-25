@@ -53,9 +53,15 @@ const Profile = () => {
                             Edit Profile
                             </button>
 
-                            <button className="mt-4  px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" 
+                            <button className="mt-4 mr-3 px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition" 
                             onClick={handleLogout}>Logout</button>
 
+                            {user?.role === "admin" && (
+                               <button className="mt-4 mr-3 px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                                onClick={() => Navigate("/admin")}>
+                                    Admin Dashboard
+                               </button> 
+                            )}
                         </div>
                     </div>
                 </div>

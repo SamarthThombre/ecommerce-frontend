@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const Singin = () => {
-  const { user,  } = useAuth();
+  const { user, login  } = useAuth();
   const Navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,6 +32,7 @@ const Singin = () => {
 
       console.log('✅ Signup successful:');
       
+      login(res.data.user);
 
       localStorage.setItem("user", JSON.stringify(res.data.user));
       localStorage.setItem("token", res.data.token);
