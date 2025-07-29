@@ -9,9 +9,16 @@ const AdminPage = () => {
   const navigate = useNavigate();
 
   const [products, setProducts] = useState([]);
+  const [newProduct, setNewProduct] = useState({
+    name: '',
+    description: '',
+    price: '',
+    brand: '',
+    category: '',
+    countInStock: '',
+    image:null,
+  });
 
-
-  const [newProduct, setNewProduct] = useState({ name: "", price: "" });
 
   useEffect(() => {
     if (!user || user.role !== "admin") navigate("/signin");
@@ -35,23 +42,55 @@ const AdminPage = () => {
     }
   };
 
+  
+
   const handleAddProduct = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.post("http://localhost:5000/api/products", newProduct, {
-        headers: { Authorization: `Bearer ${token}` },
+      const formData = new FormData();
+
+      formData.append("name", newProduct.name);
+      formData.append("description", newProduct.description);
+      formData.append("brand", newProduct.brand);
+      formData.append("price", newProduct.price);
+      formData.append("category", newProduct.category);
+      formData.append("countInStock", newProduct.countInStock);
+      formData.append("image", newProduct.image); // This is the actual File object
+
+
+      await axios.post("http://localhost:5000/api/product/create", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data", // crucial!
+        },
       });
-      setNewProduct({ name: "", price: "" });
+
+      setNewProduct({
+        name: "",
+        price: "",
+        brand: "",
+        category: "",
+        description: "",
+        image: null,
+        countInStock: "",
+      });
+
+      console.log("Product added")
+
       fetchAllData();
     } catch (err) {
       console.error("Add product error:", err);
     }
   };
 
+
+
+  
+
   const handleDeleteProduct = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/products/${id}`, {
+      await axios.delete(`http://localhost:5000/api/product/delete/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchAllData();
@@ -75,9 +114,9 @@ const AdminPage = () => {
   // };
 
   return (
-    <>
+    <div className="h-[100%] bg-[#2B2B2B]">
     <Header />
-    <div className="p-20 bg-[#2B2B2B] w-[100vw] h-fit text-white ">
+    <div className="p-20 text-white ">
       <h1 className="text-3xl font-bold mb-4 text-center">Admin Dashboard</h1>
 
       {/* Add Product */}
@@ -106,6 +145,13 @@ const AdminPage = () => {
             className="border p-2 rounded w-full sm:w-[48%]"
           />
           <input
+            type="text"
+            placeholder="Category"
+            value={newProduct.category}
+            onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
+            className="border p-2 rounded w-full sm:w-[48%]"
+          />
+          <input
             type="number"
             placeholder="Price"
             value={newProduct.price}
@@ -120,12 +166,15 @@ const AdminPage = () => {
             className="border p-2 rounded w-full sm:w-[48%]"
           />
           <input
-            type="text"
-            placeholder="Image URL"
-            value={newProduct.image}
-            onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
+            type="file"
+            onChange={(e) =>
+              setNewProduct({ ...newProduct, image: e.target.files[0] })
+            }
             className="border p-2 rounded w-full sm:w-[48%]"
           />
+
+          
+
           <button
             onClick={handleAddProduct}
             className="bg-green-600 text-white px-4 py-2 rounded mt-2 w-full sm:w-auto"
@@ -137,13 +186,13 @@ const AdminPage = () => {
 
 
       {/* Products List */}
-      <div className="mb-6">
+      <div className="mb-6 ">
         <h2 className="text-2xl font-bold mb-4">Products</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 ">
           {products.map((product) => (
           <div
             key={product._id}
-            className=" rounded-xl shadow-md overflow-hidden flex flex-col hover:shadow-lg transition-shadow"
+            className=" bg-[#3d3d3d]  rounded-xl shadow-md overflow-hidden flex flex-col hover:shadow-lg transition-shadow"
           >
             <img
             src={product.image?.url}
@@ -151,17 +200,17 @@ const AdminPage = () => {
             className="h-48 w-full object-cover"
             />
 
-            <div className="p-4 flex-1 flex flex-col justify-between">
+            <div className="p-4 flex-1 flex flex-col justify-between text-white">
               <div>
-                <h3 className="text-lg font-semibold mb-1">{product.name}</h3>
-                <p className="text-sm text-gray-600 mb-2">{product.description}</p>
-                <p className="text-sm text-gray-500 mb-1">
+                <h3 className="text-xl font-extrabold mb-3">{product.name}</h3>
+                <p className="text-sm mb-2">{product.description}</p>
+                <p className="text-sm mb-1">
                   <strong>Brand:</strong> {product.brand}
                 </p>
-                <p className="text-sm text-gray-500 mb-1">
+                <p className="text-sm  mb-1">
                   <strong>Price:</strong> ₹{product.price}
                 </p>
-                <p className="text-sm text-gray-500 mb-2">
+                <p className="text-sm  mb-2">
                   <strong>In Stock:</strong> {product.countInStock}
                 </p>
               </div>
@@ -181,7 +230,7 @@ const AdminPage = () => {
 
      
     </div>
-    </>
+    </div>
   );
 };
 

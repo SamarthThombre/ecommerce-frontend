@@ -10,23 +10,26 @@ import Signin from './pages/Signin';
 import AuthProvider from './context/AuthProvider.jsx';
 import Profile from './pages/Profile';
 import Admin from './pages/Admin';
+import { CartProvider } from './context/CartProvider.jsx';
 
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/cart" element={<My_Cart />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/admin" element={<Admin />} />
-        </Routes>
-      </BrowserRouter>
+      <CartProvider>    
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/cart" element={<My_Cart />} />
+            <Route path="/signin" element={<Signin />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/admin" element={<Admin />} />
+          </Routes>
+        </BrowserRouter>
+      </CartProvider>
     </AuthProvider>
   );
 }
