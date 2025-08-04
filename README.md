@@ -1,12 +1,108 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Uploading web page.png…]()
 
-Currently, two official plugins are available:
+🛍️ eCommerce Frontend (React + Tailwind CSS)
+This is a modern eCommerce frontend built using React.js, Tailwind CSS, and Context API. It features a responsive product listing, user authentication, and a dynamic cart system with quantity and price handling.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🚀 Features
+✅ Product Listing – Fetch and display products from backend API
 
-## Expanding the ESLint configuration
+🔐 User Authentication – Signup & login using JWT (integrated with backend)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🛒 Cart Functionality – Add/remove items, view cart total
+
+🖼️ Image Upload – (Optional) Product image display using Cloudinary or static URLs
+
+👤 Avatar Menu – Avatar appears in the header when user is logged in
+
+🌙 Responsive UI – Styled with Tailwind CSS, works well on all screen sizes
+
+📁 Project Structure
+arduino
+Copy
+Edit
+ecommerce-frontend/
+├── public/
+├── src/
+│   ├── components/
+│   ├── context/
+│   │   └── CartContext.jsx
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   ├── Product.jsx
+│   │   ├── My_Cart.jsx
+│   │   └── LoginSignup.jsx
+│   ├── App.jsx
+│   └── main.jsx
+├── tailwind.config.js
+├── postcss.config.js
+└── README.md
+⚙️ Tech Stack
+React.js
+
+React Router
+
+Context API – for cart state management
+
+Tailwind CSS – for styling
+
+Vite – for fast development and builds
+
+Axios – to handle API requests
+
+🧠 How It Works
+Add to Cart: Products are added to cart with a quantity field.
+
+Cart Page: Lists all added items, calculates total price.
+
+Authentication: Login/signup works via backend JWT flow.
+
+UI Logic: Header shows login/signup or avatar based on auth state.
+
+🔧 Setup & Run Locally
+bash
+Copy
+Edit
+# 1. Clone the repo
+git clone https://github.com/your-username/ecommerce-frontend.git
+cd ecommerce-frontend
+
+# 2. Install dependencies
+npm install
+
+# 3. Start the dev server
+npm run dev
+Make sure the backend API is running and accessible at the defined base URL.
+
+🌐 Environment Variables
+Create a .env file at the root (optional, if using .env for API URLs):
+
+env
+Copy
+Edit
+VITE_API_URL=http://localhost:5000/api
+Update your axios or fetch calls to use this.
+
+📸 Screenshots (Optional)
+Include screenshots for:
+
+Product Listing
+
+Cart Page
+
+Login/Signup Page
+
+✅ Todo / Upcoming
+ Quantity increment/decrement in cart
+
+ Stripe/PayPal integration
+
+ Product filters & categories
+
+ Order history per user
+
+🙌 Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you’d like to change.
+
+📝 License
+MIT License © 2025 [Your Name]
