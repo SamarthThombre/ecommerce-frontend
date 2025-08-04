@@ -24,7 +24,7 @@ function Home() {
           <div className="absolute inset-0 bg-black/50"></div>
         <div className='relative' >
           <p className="text-xl md:text-2xl font-bold mb-4">
-            Welcome to Urban Jungle Co.
+            Welcome to SamShop Co.
           </p>
           <h1 className="text-4xl md:text-5xl w-[70%] m-auto item-center">
             Discover the Beauty of Nature at Your Fingertips
@@ -81,7 +81,7 @@ function Home() {
       <div className="md:w-1/2 w-full">
         <img
           src="src\assets\pexels-emanuel-rodriguez-230145-6079526.jpg"
-          alt="Urban Jungle"
+          alt="Samshop"
           className="rounded-2xl w-full h-auto object-cover shadow-lg"
         />
       </div>
@@ -92,7 +92,7 @@ function Home() {
           Your Premier Destination for All Green.
         </h2>
         <p className="text-gray-600 text-base md:text-lg">
-          At <span className="font-semibold text-green-700">Urban Jungle Co.</span>, we believe in the transformative power of plants. Whether you’re a seasoned gardener or just starting your green journey, our curated selection of plants will inspire and enrich your living space.
+          At <span className="font-semibold text-green-700">Samshop Co.</span>, we believe in the transformative power of plants. Whether you’re a seasoned gardener or just starting your green journey, our curated selection of plants will inspire and enrich your living space.
         </p>
 
     

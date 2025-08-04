@@ -34,7 +34,7 @@ const About = () => {
       <div className=" md:w-[30%] w-0 ">
         <img
           src="src\assets\pexels-robin-4068386.jpg"
-          alt="Urban Jungle"
+          alt="Samshop"
           className="rounded-2xl w-full h-auto object-cover shadow-lg"
         />
       </div>

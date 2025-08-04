@@ -13,7 +13,7 @@ function Testimoneal() {
         {
         name: "Emma Johnson",
         title: "Plant Enthusiast",
-        review: "Urban Jungle Co. exceeded my expectations. My plants arrived healthy and beautiful!",
+        review: "Samshop Co. exceeded my expectations. My plants arrived healthy and beautiful!",
         rating: 5,
         },
         {

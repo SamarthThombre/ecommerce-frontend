@@ -44,7 +44,7 @@ function Contact() {
           </p>
           <div>
             <p className="font-semibold">📍 Address:</p>
-            <p className="text-gray-600">123 Green Lane, Urban Jungle City</p>
+            <p className="text-gray-600">123 Green Lane, Samshop City</p>
           </div>
           <div>
             <p className="font-semibold">📞 Phone:</p>

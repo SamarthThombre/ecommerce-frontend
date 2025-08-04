@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiShoppingCart, FiUser } from 'react-icons/fi'; 
-
-
+import { FiShoppingCart, FiUser } from 'react-icons/fi';
+import  useCart  from '../components/useCart.js';
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   
+  const { cartItems } = useCart();
+
+  const cartItemCount = cartItems.length
+
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   // Dummy cart count
-  const cartItemCount = 0
+  
 
   return (
     <header className="w-full text-white absolute top-0 z-50 bg-transparent">
